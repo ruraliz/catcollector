@@ -25,10 +25,13 @@ def index(request):
     return render(request, 'index.html', { 'cats': cats })
 
 def about(request):
-    return render(request, 'about.html', { 'tanner': tanner })
+    return render(request, 'about.html')
 
 def contact(request):
     return render(request, 'contact.html')
 
 def blog(request):
     return render(request, 'blog.html')
+
+def cats_index(request):
+    return render(request, 'cats/index.html' , {'cats': cats})   
