@@ -12,5 +12,8 @@ urlpatterns = [
     path('cats/create/', views.CatCreate.as_view(), name='cats_create'),
     path('cats/<int:pk>/update', views.CatUpdate.as_view(), name='cats_update'),
     path('cats/<int:pk>/delete', views.CatDelete.as_view(), name='cats_delete'),
-    path('user/<username>', views.profile, name="profile")
+    path('user/<username>', views.profile, name="profile"),
+    path('login/', views.login_view, name="login"),
+    path('logout/', views.logout_view, name="logout"),
+    path('signup/', views.signup_view, name='signup'),
 ]

@@ -6,8 +6,10 @@ from .models import Cat
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class CatCreate(CreateView):
   model = Cat
@@ -77,3 +79,16 @@ def login_view(request):
     else: # it was a get request so send the emtpy login form
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form })
