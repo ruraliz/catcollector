@@ -10,9 +10,8 @@
               <p class="card-text">{{ cat.description }}</p>
               <p class="card-text"> Breed: {{ cat.breed }}</p>
               <a href="/cats/{{cat.id}}" class="btn btn-primary">View {{cat.name}}</a>
-            </div>
-            <div class="card-footer text-muted">
-              Age: {{ cat.age }}
+              <p>Adopted by:</p>
+                <a href="/user/{{cat.user.username}}">{{cat.user.username}}</a>
             </div>
         </div>
     {% endfor %}
